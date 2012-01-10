@@ -36,5 +36,6 @@ clickなどのイベントと同じようにleftClick, rightClick, wheelClickを
 ##License
 Dual licensed under the MIT and GPL licenses.
 
+---
 ##Contact
 yuqq (yuqq.js@gmail.com)
