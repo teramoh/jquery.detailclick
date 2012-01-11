@@ -5,7 +5,7 @@
  * Copyright (c) 2011 yuqq (yuqq.js@gmail.com)
  * Dual licensed under the MIT and GPL licenses.
  *
- * Date: 2012-01-10
+ * Date: 2012-01-11
  */
 (function()
 {
@@ -36,20 +36,12 @@
 			}
 		}
 		
-		function checkRight(e)
-		{
-			if ( target == this && e.button == 2 )
-			{
-				$.event.trigger(RIGHT_CLICK, e, this);
-			}
-		}
-		
 		function checkWheel(e)
 		{
 			if ( target == this && ( (modern && e.button == 1) || (!modern && e.button == 4) ) )
 			{
 				$.event.trigger(WHEEL_CLICK, e, this);
-			}
+      }
 		}
 		
 		$.event.special[LEFT_CLICK] = {
@@ -79,30 +71,9 @@
 		};
 
 		$.event.special[RIGHT_CLICK] = {
-			
-			setup: function()
-			{
-				$.event.add(this, 'mouseup', checkRight);
-				if ( !state )
-				{
-					$.event.add(this, 'mousedown', aim);
-					$.event.add(document, 'mouseup', reset);
-				}
-				state = state | 2;
-			},
-			
-			teardown: function()
-			{
-				$.event.remove(this, 'mouseup', checkRight);
-				state = state ^ 2;
-				if ( !state )
-				{
-					$.event.remove(this, 'mousedown', aim);
-					$.event.remove(document, 'mouseup', reset);
-				}
-			}
-			
-		};
+      delegateType: "contextmenu",
+      bindType: "contextmenu" 
+    };
 		
 		$.event.special[WHEEL_CLICK] = {
 			
@@ -137,7 +108,7 @@
 	
 		$.fn[RIGHT_CLICK] = function(fn)
 		{
-			return fn ? this.bind(RIGHT_CLICK, fn) : this.trigger(RIGHT_CLICK);
+			return fn ? this.bind("contextmenu", fn) : this.trigger("contextmenu");
 		};	
 		
 		$.fn[WHEEL_CLICK] = function(fn)
