@@ -41,7 +41,7 @@
 			if ( target == this && ( (modern && e.button == 1) || (!modern && e.button == 4) ) )
 			{
 				$.event.trigger(WHEEL_CLICK, e, this);
-      }
+			}		
 		}
 		
 		$.event.special[LEFT_CLICK] = {
