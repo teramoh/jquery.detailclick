@@ -71,9 +71,9 @@
 		};
 
 		$.event.special[RIGHT_CLICK] = {
-      delegateType: "contextmenu",
-      bindType: "contextmenu" 
-    };
+				delegateType: "contextmenu",
+				bindType: "contextmenu" 
+		};
 		
 		$.event.special[WHEEL_CLICK] = {
 			
