@@ -5,7 +5,7 @@
  * Copyright (c) 2011 yuqq (yuqq.js@gmail.com)
  * Dual licensed under the MIT and GPL licenses.
  *
- * Date: 2012-01-11
+ * Date: 2012-01-13
  */
 (function()
 {
@@ -15,7 +15,6 @@
 		
 		var target = null;
 		var modern = ( !$.browser.msie || $.browser.version >= 9 );
-		var state = 0;
 
 		function aim(e)
 		{
@@ -49,19 +48,19 @@
 			setup: function()
 			{
 				$.event.add(this, 'mouseup', checkLeft);
-				if ( !state )
+				if ( !this._state )
 				{
 					$.event.add(this, 'mousedown', aim);
 					$.event.add(document, 'mouseup', reset);
 				}
-				state = state | 1;
+				this._state = this._state | 1;
 			},
 			
 			teardown: function()
 			{
 				$.event.remove(this, 'mouseup', checkLeft);
-				state = state ^ 1;
-				if ( !state )
+				this._state = this._state ^ 1;
+				if ( !this._state )
 				{
 					$.event.remove(this, 'mousedown', aim);
 					$.event.remove(document, 'mouseup', reset);
@@ -80,19 +79,19 @@
 			setup: function()
 			{
 				$.event.add(this, 'mouseup', checkWheel);
-				if ( !state )
+				if ( !this._state )
 				{
 					$.event.add(this, 'mousedown', aim);
 					$.event.add(document, 'mouseup', reset);
 				}
-				state = state | 4;
+				this._state = this._state | 4;
 			},
 			
 			teardown: function()
 			{
 				$.event.remove(this, 'mouseup', checkWheel);
-				state = state ^ 4;
-				if ( !state )
+				this._state = this._state ^ 4;
+				if ( !this._state )
 				{
 					$.event.remove(this, 'mousedown', aim);
 					$.event.remove(document, 'mouseup', reset);
